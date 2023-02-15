@@ -112,11 +112,15 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/cmake/bgfx)
 if(BGFX_INSTALL)
 	include(GNUInstallDirs)
 
+    set(CMAKE_INSTALL_LIBDIR         "$<$<CONFIG:Debug>:debug/>${CMAKE_INSTALL_LIBDIR}")        # <prefix>/[debug]/lib
+    set(CMAKE_INSTALL_BINDIR         "$<$<CONFIG:Debug>:debug/>${CMAKE_INSTALL_BINDIR}")        # <prefix>/[debug]/bin
+    set(config_install_dir           "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}")              # <prefix>/share/<project_name>
+
 	# Layout. This works for all platforms:
 	#   * <prefix>/lib*/cmake/<PROJECT-NAME>
 	#   * <prefix>/lib*/
 	#   * <prefix>/include/
-	set(config_install_dir "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
+	# set(config_install_dir "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
 	set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated")
 
 	# Configuration
